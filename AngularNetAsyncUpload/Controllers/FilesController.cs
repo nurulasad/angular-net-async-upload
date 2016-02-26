@@ -46,16 +46,16 @@ namespace AngularNetAsyncUpload.Controllers
 
         // You could extract these two private methods to a separate utility class since
         // they do not really belong to a controller class but that is up to you
-        private MultipartFormDataStreamProvider GetMultipartProvider()
+        private MyMultipartFormDataStreamProvider GetMultipartProvider()
         {
             var uploadFolder = "~/App_Data/Tmp/FileUploads"; // you could put this to web.config
             var root = HttpContext.Current.Server.MapPath(uploadFolder);
             Directory.CreateDirectory(root);
-            return new MultipartFormDataStreamProvider(root);
+            return new MyMultipartFormDataStreamProvider(root);
         }
 
         // Extracts Request FormatData as a strongly typed model
-        private object GetFormData<T>(MultipartFormDataStreamProvider result)
+        private object GetFormData<T>(MyMultipartFormDataStreamProvider result)
         {
             if (result.FormData.HasKeys())
             {
